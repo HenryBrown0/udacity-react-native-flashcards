@@ -2,6 +2,7 @@
   "name": "udacity-react-native-flashcards",
   "version": "0.1.0",
   "private": true,
+  "author": "Henry Brown (https://github.com/HenryBrown0)",
   "devDependencies": {
     "react-native-scripts": "1.11.1",
     "jest-expo": "25.0.0",
