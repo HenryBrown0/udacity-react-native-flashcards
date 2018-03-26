@@ -23,5 +23,12 @@
     "expo": "^25.0.0",
     "react": "16.2.0",
     "react-native": "0.52.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HenryBrown0/udacity-react-native-flashcards.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HenryBrown0/udacity-react-native-flashcards/issues"
   }
 }
