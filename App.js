@@ -1,13 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+//Components
+import Deck from './components/Deck';
 
 export default class App extends React.Component {
   render() {
+    const decks = [
+
+    ];
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Text style={styles.title}>Packs:</Text>
+        <ScrollView>
+          <View style={styles.decks}>
+            {
+              decks.map(d => (
+                <Deck
+                  key={d.key}
+                  title={d.title}
+                  cardCount={d.cardCount}
+                />
+              ))
+          }
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -20,4 +36,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'left',
+  },
+  decks: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
