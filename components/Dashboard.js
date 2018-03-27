@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+//Components
+import DeckPreview from './DeckPreview';
 
-class Deck extends Component {
+class Dashboard extends Component {
   static navigationOptions = {
-    title: 'Deck',
+    title: 'Dashboard',
   };
-  
   render() {
     const decks = [
       {
-        key: 1,
+        id: 1,
         title: 1,
         cardCount: 1,
       },{
-        key: 2,
+        id: 2,
         title: 2,
         cardCount: 2,
       }
     ]
-    const { params } = this.props.navigation.state;
-    console.log(params)
     return (
       <View style={styles.container}>
-        <Text>{params.id}</Text>
+        <Text style={styles.title}>Packs:</Text>
+        <ScrollView>
+          <View style={styles.decks}>
+            {
+              decks.map(d => (
+                <DeckPreview
+                  key={d.id}
+                  id={d.id}
+                  title={d.title}
+                  cardCount={d.cardCount}
+                  navigation={this.props.navigation}
+                />
+              ))
+            }
+          </View>
+        </ScrollView>
       </View>
     )
   }
@@ -50,4 +64,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Deck;
+export default Dashboard;
