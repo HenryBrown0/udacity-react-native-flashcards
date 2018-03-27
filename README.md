@@ -6,7 +6,7 @@ Tested and built for Android.
 ## Installation
 * Install and start
 	- `npm install`
-	- `npm start`
-	- Then start your emulator and select `a` for Android. Or select `q` and scan the QR code with the expo app on Android.
+	- (With an emulator running) Run `npm run android`
+	- (With the expo app) Run `npm start` then `q` and scan the qr code with the expo app.
 ## Contributors
 Henry Brown
