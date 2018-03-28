@@ -36,16 +36,20 @@ class Deck extends Component {
         <View style={styles.btnContainer}>
           <View style={styles.btn}>
             <Button
-              title='Start a Quiz'
-              disabled={cardCount == 0 ? true : false}
-              onPress={() => console.log('Start quiz')}
+              title='Create New Question'          
+              onPress={
+                () => navigation.navigate(
+                  'NewQuestion', {id: id }
+                )
+              }
             />
           </View>
           <View style={styles.btn}>
             <Button
-              title='Create New Question'
+              title='Start A Quiz'
               color="#841584"
-              onPress={() => console.log('New question')}
+              disabled={cardCount == 0 ? true : false}
+              onPress={() => console.log('Start Quiz')}
             />
           </View>
         </View>
