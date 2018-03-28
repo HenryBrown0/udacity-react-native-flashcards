@@ -20,9 +20,12 @@ class DeckPreview extends Component {
           Cards: {cardCount}
         </Text>
         <Button
-          title='Open pack'
+          title='Go to deck'
           
-          onPress={() => this.props.navigation.navigate('Deck', { id: id })}
+          onPress={
+            () => this.props.navigation.navigate(
+              'Deck', {id: id, name: title }
+            )}
         />
       </View>
     );

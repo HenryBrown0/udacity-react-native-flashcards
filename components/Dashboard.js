@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+//Redux
+import { connect } from 'react-redux';
+import { fetchDecks } from '../actions';
 //Components
 import DeckPreview from './DeckPreview';
 
@@ -7,33 +10,29 @@ class Dashboard extends Component {
   static navigationOptions = {
     title: 'Dashboard',
   };
+
+  componentDidMount(){
+		this.props.fetchDecks();
+  };
+  
   render() {
-    const decks = [
-      {
-        id: 1,
-        title: 1,
-        cardCount: 1,
-      },{
-        id: 2,
-        title: 2,
-        cardCount: 2,
-      }
-    ]
+    const { decks } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Packs:</Text>
         <ScrollView>
           <View style={styles.decks}>
             {
-              decks.map(d => (
-                <DeckPreview
-                  key={d.id}
-                  id={d.id}
-                  title={d.title}
-                  cardCount={d.cardCount}
-                  navigation={this.props.navigation}
-                />
-              ))
+              decks ? (
+                decks.map(d => (
+                  <DeckPreview
+                    key={d.id}
+                    id={d.id}
+                    title={d.title}
+                    cardCount={d.cardCount}
+                    navigation={this.props.navigation}
+                  />
+                ))
+              ) : (<Text style={styles.title}>No packs</Text>)
             }
           </View>
         </ScrollView>
@@ -64,4 +63,17 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Dashboard;
+function mapStateToProps ({ decks }) {
+  return { decks }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+		fetchDecks: (data) => dispatch(fetchDecks(data)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard)

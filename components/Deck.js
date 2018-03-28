@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+//Redux
+import { connect } from 'react-redux';
+import { fetchDecks } from '../actions';
 
 class Deck extends Component {
-  static navigationOptions = {
-    title: 'Deck',
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    
+    return {
+      title: params ? params.name : 'Something went wrong',
+    }
   };
   
   render() {
-    const decks = [
-      {
-        key: 1,
-        title: 1,
-        cardCount: 1,
-      },{
-        key: 2,
-        title: 2,
-        cardCount: 2,
-      }
-    ]
-    const { params } = this.props.navigation.state;
-    console.log(params)
+    const { id } = this.props.navigation.state.params;
+    const { decks } = this.props;
     return (
       <View style={styles.container}>
-        <Text>{params.id}</Text>
+        {decks.filter(d => d.id == id).map(d => (
+          <View key={d.id}>
+            <Text>{d.id}</Text>
+            <Text>{d.title}</Text>
+            <Text>{d.cardCount}</Text>
+          </View>
+        ))}
       </View>
     )
   }
@@ -33,21 +35,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
     paddingTop: 7,
   },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'left',
-  },
-  decks: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
 });
 
-export default Deck;
+function mapStateToProps ({ decks }) {
+  return { decks }
+}
+
+export default connect(mapStateToProps)(Deck)
