@@ -59,18 +59,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 7,  
+    paddingTop: 7,
+    justifyContent: 'flex-start',
   },
   detailContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   detailTitle: {
     margin: 10,
   },
   btnContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
