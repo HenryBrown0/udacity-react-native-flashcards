@@ -1,5 +1,6 @@
 import {
 	FETCH_DECKS,
+	FETCH_DECK_QUESTIONS,
 } from '../actions';
 
 function decks(state = {}, action){
@@ -9,6 +10,12 @@ function decks(state = {}, action){
 			return {
 				...state,
 				decks
+			}
+		case FETCH_DECK_QUESTIONS:
+			const { deckQuestions } = action;
+			return {
+				...state,
+				...deckQuestions
 			}
 		default :
 			return state
