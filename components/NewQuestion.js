@@ -11,42 +11,34 @@ class NewQuestion extends Component {
     title: 'New Question',
   };
   state = {
+    questionId: '',
     question: '',
     answer: '',
   }
-
-  componentWillReceiveProps (nextProps) {
-    console.log("PROPS")
-  }
-
-  componentWillUpdate(){
-    console.log("UPDATE")
-  }
-
+  
   onSubmit = () => {
-    const { question, answer } = this.state;
-    if(question, answer){
+    const { addDeckQuestion, navigation } = this.props;
+    const { questionId, question, answer } = this.state;
+    if(questionId && question && answer){
       const { id } = this.props.navigation.state.params;
-      this.props.addDeckQuestion(id, question, answer);
+      addDeckQuestion(id, questionId, question, answer);
+      navigation.goBack();
     }
   }
   
   render() {
     const { id } = this.props.navigation.state.params;
     const { navigation, decks } = this.props;
-    const { question, answer } = this.state;
+    const { questionId, question, answer } = this.state;
     return (
       <View style={styles.container}>
         <View>
-          <Text>
-          {
-            decks.filter(d => d.id === id).map(d => (
-              d.cardCount
-            ))
-          }
-          </Text>
-        </View>
-        <View>
+          <TextInput
+            style={styles.detailInput}
+            placeholder="QuestionID"
+            value={questionId}
+            onChangeText={(questionId) => this.setState({questionId})}
+          />
           <TextInput
             style={styles.detailInput}
             placeholder="Question"
@@ -65,7 +57,7 @@ class NewQuestion extends Component {
           <View style={styles.btn}>
             <Button
               title='Cancel'
-              onPress={() => console.log(this.props.decks)}
+              onPress={() => navigation.goBack()}
             />
           </View>
           <View style={styles.btn}>

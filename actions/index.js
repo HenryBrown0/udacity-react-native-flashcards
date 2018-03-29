@@ -28,13 +28,15 @@ export function fetchDecks(){
 /**
  * @description Adds a new question to a deck
  * @param {number} deckId Id of the deck to add to
+ * @param {number} questionId Id of the new question
  * @param {string} question Question to add
  * @param {string} answer Answer to add
  */
-export function addDeckQuestion(deckId, question, answer){
+export function addDeckQuestion(deckId, questionId, question, answer){
   return {
     type: ADD_DECK_QUESTION,
     id: deckId,
+    questionId,
     question,
     answer
   }
@@ -42,16 +44,13 @@ export function addDeckQuestion(deckId, question, answer){
 
 /**
  * @description Adds a new deck
- * @param {string} name Name of the new deck
+ * @param {number} newDeckId Id of the new deck
+ * @param {string} newDeckTitle Title of the new deck
  */
-export function addDeck(name){
+export function addDeck(newDeckId, newDeckTitle){
   return {
     type: ADD_DECK,
-    newDeck: {
-      id: 3,
-      title: name,
-      cardCount: 0,
-      questions: [],
-    }
+    newDeckId,
+    newDeckTitle,
   }
 }

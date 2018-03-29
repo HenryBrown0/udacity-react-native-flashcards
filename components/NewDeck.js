@@ -11,22 +11,31 @@ class NewDeck extends Component {
     title: 'New Deck',
   };
   state = {
+    id: '',
     name: '',
   }
 
   onSubmit = () => {
-    const { name } = this.state;
-    if(name){
-      this.props.addDeck(name);
+    const { addDeck, navigation } = this.props;
+    const { id, name } = this.state;
+    if(id && name){
+      addDeck(id, name);
+      navigation.goBack()
     }
   }
   
   render() {
-    const { decks } = this.props;
-    const { name } = this.state;
+    const { decks, navigation } = this.props;
+    const { id, name } = this.state;
     return (
       <View style={styles.container}>
         <View>
+          <TextInput
+            style={styles.detailInput}
+            placeholder="ID"
+            value={id}
+            onChangeText={(id) => this.setState({id})}
+          />
           <TextInput
             style={styles.detailInput}
             placeholder="Name"
@@ -39,7 +48,7 @@ class NewDeck extends Component {
           <View style={styles.btn}>
             <Button
               title='Cancel'
-              onPress={() => console.log(this.props.decks)}
+              onPress={() => navigation.goBack()}
             />
           </View>
           <View style={styles.btn}>
