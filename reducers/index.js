@@ -1,6 +1,5 @@
 import {
 	FETCH_DECKS,
-	FETCH_DECK_QUESTIONS,
 	ADD_DECK_QUESTION
 } from '../actions';
 
@@ -12,12 +11,6 @@ function decks(state = {}, action){
 			return {
 				...state,
 				decks
-			}
-		case FETCH_DECK_QUESTIONS:
-			const { deckQuestions } = action;
-			return {
-				...state,
-				...deckQuestions
 			}
 		case ADD_DECK_QUESTION:
 			const { id, question, answer } = action;

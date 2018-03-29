@@ -1,7 +1,9 @@
 export const FETCH_DECKS = 'FETCH_DECKS';
-export const FETCH_DECK_QUESTIONS = 'FETCH_DECK_QUESTIONS';
 export const ADD_DECK_QUESTION = 'ADD_DECK_QUESTION';
 
+/**
+ * @description Gets all the decks id, title and card count.
+ */
 export function fetchDecks(){
   const decks = [
     {
@@ -22,36 +24,11 @@ export function fetchDecks(){
   }
 }
 
-export function fetchDeckQuestions(deckId){
-  const decks = [
-    {
-      id: 1,
-      questions: [
-        {
-          question: 'How tall is big ben?',
-          answers: { meters: '96', feet: '315' },
-        }, {
-          question: 'How many countries are in Great Britain?',
-          answers: 3,
-        },
-      ]
-    },{
-      id: 2,
-      questions: []
-    }
-  ]
-  const deckQuestions = decks.filter(d => d.id == deckId);
-  return {
-    type: FETCH_DECK_QUESTIONS,
-    deckQuestions
-  }
-}
-
 /**
  * @description Adds a new question to a deck
  * @param {number} deckId 
  * @param {string} question 
- * @param {string} answers 
+ * @param {string} answer
  */
 export function addDeckQuestion(deckId, question, answer){
   return {
