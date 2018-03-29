@@ -8,25 +8,26 @@ class DeckPreview extends Component {
     const title = this.props.title ? this.props.title : 'Placeholder';
     const { id, cardCount } = this.props;
     return (
-      <View style={styles.container}>
-        <Image 
-          source={img}
-          style={styles.img}
-        />
-        <Text style={styles.title}>
-          {title}
-        </Text>
-        <Text style={styles.cardCount}>
-          Cards: {cardCount}
-        </Text>
-        <Button
-          title='Go to deck'
-          
-          onPress={
-            () => this.props.navigation.navigate(
-              'Deck', {id: id, name: title }
-            )}
-        />
+      <View elevation={2} style={styles.container}>
+        <View style={styles.imgContainer}>
+          <Image 
+            source={img}
+            style={styles.img}
+          />
+        </View>
+        <View style={styles.detailContainer}>
+          <Text>{title}</Text>
+          <Text>Cards: {cardCount}</Text>
+        </View>
+        <View style={styles.btnContainer}>
+          <Button
+            title='Go to deck'
+            onPress={
+              () => this.props.navigation.navigate(
+                'Deck', {id: id, name: title }
+              )}
+          />
+        </View>
       </View>
     );
   }
@@ -34,23 +35,35 @@ class DeckPreview extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'grey',
+    flexDirection: 'row',
+    borderRadius: 2,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+    backgroundColor: '#fff',
     padding: 4,
     margin: 6,
   },
+  imgContainer: {
+    flex: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   img: {
-    height: 100,
-    width: 100,
+    height: 50,
+    width: 50,
   },
-  title: {
-    fontSize: 16,
-    textAlign: 'center',
-    paddingTop: 6,
+  detailContainer: {
+    flex: 7,
+    margin: 5,
   },
-  cardCount: {
-    textAlign: 'center',
-    paddingBottom: 6,
+  btnContainer: {
+    flex: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  btn: {
+    
+  }
 });
 
 export default DeckPreview;
