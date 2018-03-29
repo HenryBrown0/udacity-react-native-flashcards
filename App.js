@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 //Redux
 import { createStore } from 'redux';
@@ -8,6 +7,7 @@ import { Provider } from 'react-redux';
 //Components
 import Dashboard from './components/Dashboard';
 import Deck from './components/Deck';
+import NewQuestion from './components/NewQuestion';
 
 class App extends Component {
   render() {
@@ -18,7 +18,11 @@ class App extends Component {
       Deck: {
         screen: Deck
       },
+      NewQuestion: {
+        screen: NewQuestion
+      }
     })
+
     return (
       <Provider store={createStore(reducer)}>
         <Stack />
