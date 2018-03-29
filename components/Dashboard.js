@@ -25,21 +25,20 @@ class Dashboard extends Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <View style={styles.decks}>
-            {
-              decks ? (
-                decks.sort((a, b) => b.cardCount - a.cardCount).map(d => (
-                  <DeckPreview
-                    key={d.id}
-                    id={d.id}
-                    title={d.title}
-                    cardCount={d.cardCount}
-                    navigation={this.props.navigation}
-                  />
-                ))
-              ) : (<Text style={styles.title}>No packs</Text>)
-            }
-          </View>
+          { decks ? (
+            <View style={styles.decks}>
+              { decks.sort((a, b) => b.cardCount - a.cardCount).map(d => (
+                <DeckPreview
+                  key={d.id}
+                  id={d.id}
+                  title={d.title}
+                  cardCount={d.cardCount}
+                  navigation={this.props.navigation}
+                />
+              )) }
+              <Text style={styles.end}>That's all folks</Text>
+            </View>
+          ) : (<Text style={styles.title}>No packs</Text>) }
         </ScrollView>
 
         <View elevation={2} style={styles.btnContainer}>
@@ -72,6 +71,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  end: {
+    padding: 25
   },
   btnContainer: {
     position: 'absolute',
