@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { StyleSheet, Text, TouchableNativeFeedback, View, Image, Button } from 'react-native';
 //Media
 import img from './media/img/100x100.png';
+//Icons
+import Icon from 'react-native-vector-icons/Feather';
 
 class DeckPreview extends Component {
   render() {
@@ -9,25 +11,28 @@ class DeckPreview extends Component {
     const { id, cardCount } = this.props;
     return (
       <View elevation={2} style={styles.container}>
-        <View style={styles.imgContainer}>
-          <Image 
-            source={img}
-            style={styles.img}
-          />
-        </View>
-        <View style={styles.detailContainer}>
-          <Text>{title}</Text>
-          <Text>Cards: {cardCount}</Text>
-        </View>
+        <TouchableNativeFeedback
+          onPress={() => this.props.navigation.navigate(
+            'Deck', { id, title }
+          )}
+        >
+          <View style={styles.deckContainer}>
+            <View style={styles.imgContainer}>
+              <Image 
+                source={img}
+                style={styles.img}
+              />
+            </View>
+            <View style={styles.detailContainer}>
+              <Text>{title}</Text>
+              <Text>Cards: {cardCount}</Text>
+            </View>
+          </View>
+        </TouchableNativeFeedback>
         <View style={styles.btnContainer}>
-          <Button
-            title='Go to deck'
-            onPress={() => this.props.navigation.navigate(
-              'Deck', { id, title }
-            )}
-          />
+          <Icon name="x-circle" size={30} color="firebrick" />
         </View>
-      </View>
+      </View >
     );
   }
 }
@@ -41,6 +46,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 4,
     margin: 6,
+  },
+  deckContainer: {
+    flex: 10,
+    flexDirection: 'row',
   },
   imgContainer: {
     flex: 3,
@@ -56,13 +65,11 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   btnContainer: {
-    flex: 4,
+    flex: 1,
+    margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  btn: {
-    
-  }
 });
 
 export default DeckPreview;
