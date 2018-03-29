@@ -12,9 +12,6 @@ class Dashboard extends Component {
   static navigationOptions = {
     title: 'Dashboard',
   };
-  state = {
-    active: true,
-  }
 
   componentDidMount(){
 		this.props.fetchDecks();

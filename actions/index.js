@@ -1,6 +1,7 @@
 export const FETCH_DECKS = 'FETCH_DECKS';
 export const ADD_DECK_QUESTION = 'ADD_DECK_QUESTION';
 export const ADD_DECK = 'ADD_DECK';
+export const DELETE_DECK = 'DELECT_DECK';
 
 /**
  * @description Gets all the decks id, title and card count.
@@ -53,5 +54,16 @@ export function addDeck(newDeck){
     type: ADD_DECK,
     newDeckId: newDeck.id,
     newDeckTitle: newDeck.title,
+  }
+}
+
+/**
+ * @description Deletes a deck
+ * @param {number} deckId - The id of the deck to be deleted
+ */
+export function deleteDeck(deckId){
+  return {
+    type: DELETE_DECK,
+    deleteDeckId: deckId
   }
 }

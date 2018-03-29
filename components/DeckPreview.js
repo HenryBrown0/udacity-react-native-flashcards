@@ -6,6 +6,9 @@ import {
   View,
   Image
 } from 'react-native';
+//Redux
+import { connect } from 'react-redux';
+import { deleteDeck } from '../actions';
 //Media
 import img from './media/img/100x100.png';
 //Icons
@@ -33,7 +36,9 @@ class DeckPreview extends Component {
           </View>
         </TouchableNativeFeedback>
         <View style={styles.btnContainer}>
-          <Icon name="x-circle" size={30} color="firebrick" />
+          <TouchableNativeFeedback onPress={() => this.props.deleteDeck(id)} >
+            <Icon name="x-circle" size={30} color="firebrick" />
+          </TouchableNativeFeedback>
         </View>
       </View >
     );
@@ -75,4 +80,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DeckPreview;
+function mapStateToProps ({ decks }) {
+  return { decks }
+}
+
+
+function mapDispatchToProps (dispatch) {
+  return {
+		deleteDeck: (data) => dispatch(deleteDeck(data)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckPreview)

@@ -1,7 +1,8 @@
 import {
 	FETCH_DECKS,
 	ADD_DECK_QUESTION,
-	ADD_DECK
+	ADD_DECK,
+	DELETE_DECK
 } from '../actions';
 
 function decks(state = {}, action){
@@ -42,6 +43,13 @@ function decks(state = {}, action){
 			return {
 				...state,
 				decks: addDeck,
+			}
+		case DELETE_DECK:
+			const { deleteDeckId } = action;
+			console.log("Reducer - DELECT DECK");
+			return {
+				...state,
+				decks: state.decks.filter(d => d.id !== deleteDeckId)
 			}
 		default :
 			return state
