@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
@@ -36,6 +36,11 @@ class Dashboard extends Component {
             }
           </View>
         </ScrollView>
+        <Button
+          title='New Deck'
+          color="#841584"
+          onPress={() => this.props.navigation.navigate('NewDeck')}
+        />
       </View>
     )
   }
@@ -60,7 +65,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 function mapStateToProps ({ decks }) {

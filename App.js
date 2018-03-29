@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import Dashboard from './components/Dashboard';
 import Deck from './components/Deck';
 import NewQuestion from './components/NewQuestion';
+import NewDeck from './components/NewDeck';
 
 class App extends Component {
   render() {
@@ -20,6 +21,9 @@ class App extends Component {
       },
       NewQuestion: {
         screen: NewQuestion
+      },
+      NewDeck: {
+        screen: NewDeck
       }
     })
 

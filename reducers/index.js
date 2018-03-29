@@ -1,6 +1,7 @@
 import {
 	FETCH_DECKS,
-	ADD_DECK_QUESTION
+	ADD_DECK_QUESTION,
+	ADD_DECK
 } from '../actions';
 
 function decks(state = {}, action){
@@ -18,10 +19,15 @@ function decks(state = {}, action){
 			let deck = state.decks.filter(d => d.id === id).pop();
 			deck.cardCount += 1;
 			deck.questions.push({question, answer});
-			decks = deck;
 			return {
 				...state,
-				...decks
+			}
+		case ADD_DECK:
+			const { newDeck } = action;
+			console.log("ADD DECK");
+			state.decks.push(newDeck)
+			return {
+				...state,
 			}
 		default :
 			return state

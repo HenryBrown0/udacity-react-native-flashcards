@@ -2,62 +2,36 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
-import { addDeckQuestion } from '../actions';
+import { addDeck } from '../actions';
 //Media
 import img from './media/img/100x100.png';
 
-class NewQuestion extends Component {
+class NewDeck extends Component {
   static navigationOptions = {
-    title: 'New Question',
+    title: 'New Deck',
   };
   state = {
-    question: '',
-    answer: '',
-  }
-
-  componentWillReceiveProps (nextProps) {
-    console.log("PROPS")
-  }
-
-  componentWillUpdate(){
-    console.log("UPDATE")
+    name: '',
   }
 
   onSubmit = () => {
-    const { question, answer } = this.state;
-    if(question, answer){
-      const { id } = this.props.navigation.state.params;
-      this.props.addDeckQuestion(id, question, answer);
+    const { name } = this.state;
+    if(name){
+      this.props.addDeck(name);
     }
   }
   
   render() {
-    const { id } = this.props.navigation.state.params;
-    const { navigation, decks } = this.props;
-    const { question, answer } = this.state;
+    const { decks } = this.props;
+    const { name } = this.state;
     return (
       <View style={styles.container}>
         <View>
-          <Text>
-          {
-            decks.filter(d => d.id === id).map(d => (
-              d.cardCount
-            ))
-          }
-          </Text>
-        </View>
-        <View>
           <TextInput
             style={styles.detailInput}
-            placeholder="Question"
-            value={question}
-            onChangeText={(question) => this.setState({question})}
-          />
-          <TextInput
-            style={styles.detailInput}
-            placeholder="Answer"
-            value={answer}
-            onChangeText={(answer) => this.setState({answer})}
+            placeholder="Name"
+            value={name}
+            onChangeText={(name) => this.setState({name})}
           />
         </View>
 
@@ -111,11 +85,11 @@ function mapStateToProps ({ decks }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-		addDeckQuestion: (data) => dispatch(addDeckQuestion(data)),
+		addDeck: (data) => dispatch(addDeck(data)),
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewQuestion)
+)(NewDeck)
