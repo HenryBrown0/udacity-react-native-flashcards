@@ -5,7 +5,7 @@ import img from './media/img/100x100.png';
 
 class DeckPreview extends Component {
   render() {
-    const title = this.props.title ? this.props.title : 'Placeholder';
+    const title = this.props.title ? this.props.title : 'Unamed deck';
     const { id, cardCount } = this.props;
     return (
       <View elevation={2} style={styles.container}>
@@ -22,10 +22,9 @@ class DeckPreview extends Component {
         <View style={styles.btnContainer}>
           <Button
             title='Go to deck'
-            onPress={
-              () => this.props.navigation.navigate(
-                'Deck', {id: id, name: title }
-              )}
+            onPress={() => this.props.navigation.navigate(
+              'Deck', { id, title }
+            )}
           />
         </View>
       </View>

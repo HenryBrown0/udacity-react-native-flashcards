@@ -9,9 +9,8 @@ import img from './media/img/100x100.png';
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-    
     return {
-      title: params ? params.name : 'Something went wrong',
+      title: params ? params.title : 'Something went wrong',
     }
   };
   
@@ -39,7 +38,7 @@ class Deck extends Component {
               title='Create New Question'          
               onPress={
                 () => navigation.navigate(
-                  'NewQuestion', {id: id }
+                  'NewQuestion', { id }
                 )
               }
             />

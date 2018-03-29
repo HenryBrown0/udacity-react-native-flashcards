@@ -12,21 +12,23 @@ class NewDeck extends Component {
   };
   state = {
     id: '',
-    name: '',
+    title: '',
   }
 
   onSubmit = () => {
     const { addDeck, navigation } = this.props;
-    const { id, name } = this.state;
-    if(id && name){
-      addDeck(id, name);
-      navigation.goBack()
+    const { id, title } = this.state;
+    if(id && title){
+      addDeck(id, title);
+      navigation.navigate(
+        'Deck', { id, title }
+      )
     }
   }
   
   render() {
     const { decks, navigation } = this.props;
-    const { id, name } = this.state;
+    const { id, title } = this.state;
     return (
       <View style={styles.container}>
         <View>
@@ -38,9 +40,9 @@ class NewDeck extends Component {
           />
           <TextInput
             style={styles.detailInput}
-            placeholder="Name"
-            value={name}
-            onChangeText={(name) => this.setState({name})}
+            placeholder="Title"
+            value={title}
+            onChangeText={(title) => this.setState({title})}
           />
         </View>
 
