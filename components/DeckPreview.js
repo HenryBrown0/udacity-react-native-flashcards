@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableNativeFeedback, View, Image, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  View,
+  Image
+} from 'react-native';
 //Media
 import img from './media/img/100x100.png';
 //Icons
@@ -18,10 +24,7 @@ class DeckPreview extends Component {
         >
           <View style={styles.deckContainer}>
             <View style={styles.imgContainer}>
-              <Image 
-                source={img}
-                style={styles.img}
-              />
+              <Image source={img} style={styles.img} />
             </View>
             <View style={styles.detailContainer}>
               <Text>{title}</Text>

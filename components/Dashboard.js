@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
-//Native base
-import { Icon, Fab } from 'native-base';
+//Icons
+import Icon from 'react-native-vector-icons/Feather';
 //Components
 import DeckPreview from './DeckPreview';
 
@@ -28,7 +28,7 @@ class Dashboard extends Component {
           <View style={styles.decks}>
             {
               decks ? (
-                decks.map(d => (
+                decks.sort((a, b) => b.cardCount - a.cardCount).map(d => (
                   <DeckPreview
                     key={d.id}
                     id={d.id}
@@ -42,13 +42,15 @@ class Dashboard extends Component {
           </View>
         </ScrollView>
 
-        <View style={styles.btn}>
-          <Fab
-            style={{ backgroundColor: '#841584' }}
-            position="bottomRight"
-            onPress={() => this.props.navigation.navigate('NewDeck')}>
-            <Icon name="add" />
-          </Fab>
+        <View style={styles.btnContainer}>
+          <Icon
+            name="plus-circle"
+            size={40}
+            color="blueviolet"
+            elevation={2}
+            style={styles.btn}
+            onPress={() => this.props.navigation.navigate('NewDeck')}
+          />
         </View>
       </View>
     )
@@ -71,8 +73,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  btnContainer: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    margin: 15,
+  },
   btn: {
-    flex: 1,
+    backgroundColor: 'white',
+    borderRadius: 100,
+    borderWidth: 0,
   },
 });
 
