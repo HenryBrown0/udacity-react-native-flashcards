@@ -21,7 +21,7 @@ class NewQuestion extends Component {
     const { questionId, question, answer } = this.state;
     if(questionId && question && answer){
       const { id } = this.props.navigation.state.params;
-      addDeckQuestion(id, questionId, question, answer);
+      addDeckQuestion({deckId: id, questionId, question, answer});
       navigation.goBack();
     }
   }

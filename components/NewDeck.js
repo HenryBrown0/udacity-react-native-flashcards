@@ -19,7 +19,7 @@ class NewDeck extends Component {
     const { addDeck, navigation } = this.props;
     const { id, title } = this.state;
     if(id && title){
-      addDeck(id, title);
+      addDeck({id, title});
       navigation.navigate(
         'Deck', { id, title }
       )
