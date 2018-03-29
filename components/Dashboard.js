@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
 //Icons
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Entypo';
 //Components
 import DeckPreview from './DeckPreview';
 
@@ -42,12 +42,12 @@ class Dashboard extends Component {
           </View>
         </ScrollView>
 
-        <View style={styles.btnContainer}>
+        <View elevation={2} style={styles.btnContainer}>
           <Icon
-            name="plus-circle"
-            size={40}
-            color="blueviolet"
-            elevation={2}
+            name="plus"
+            size={35}
+            color="white"
+            
             style={styles.btn}
             onPress={() => this.props.navigation.navigate('NewDeck')}
           />
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   btn: {
-    backgroundColor: 'white',
+    backgroundColor: 'blueviolet',
     borderRadius: 100,
-    borderWidth: 0,
+    padding: 5,
   },
 });
 
