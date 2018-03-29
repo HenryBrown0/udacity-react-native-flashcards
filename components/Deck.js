@@ -48,7 +48,9 @@ class Deck extends Component {
               title='Start A Quiz'
               color="#841584"
               disabled={cardCount == 0 ? true : false}
-              onPress={() => console.log('Start Quiz')}
+              onPress={() => navigation.navigate(
+                'Quiz', { id }
+              )}
             />
           </View>
         </View>

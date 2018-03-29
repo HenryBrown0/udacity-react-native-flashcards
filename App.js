@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import Deck from './components/Deck';
 import NewQuestion from './components/NewQuestion';
 import NewDeck from './components/NewDeck';
+import Quiz from './components/Quiz';
 
 class App extends Component {
   render() {
@@ -24,6 +25,9 @@ class App extends Component {
       },
       NewDeck: {
         screen: NewDeck
+      },
+      Quiz: {
+        screen: Quiz
       }
     })
 
