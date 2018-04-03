@@ -5,6 +5,8 @@ import { createStore } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
 //Components
+import { setLocalNotification } from './utils/helpers';
+//Views
 import Dashboard from './components/Dashboard';
 import Deck from './components/Deck';
 import NewQuestion from './components/NewQuestion';
@@ -12,6 +14,9 @@ import NewDeck from './components/NewDeck';
 import Quiz from './components/Quiz';
 
 class App extends Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     const Stack = StackNavigator({
       Dashboard: {

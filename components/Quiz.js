@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button, Image } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
 import { fetchDecks } from '../actions';
+//Components
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 //Media
 import img from './media/img/100x100.png';
 
@@ -18,6 +20,10 @@ class Quiz extends Component {
     showAnswer: false,
     correct: 0,
     finish: false,
+  }
+
+  componentDidMount(){
+    clearLocalNotification().then(setLocalNotification)
   }
 
   nextQuestion(status) {
